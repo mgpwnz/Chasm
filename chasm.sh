@@ -41,6 +41,7 @@ function check_empty {
   done
 }
 
+
 function confirm_input {
   echo "You have entered the following information:"
   echo "Node Name: $NAME"
@@ -58,7 +59,9 @@ function confirm_input {
   return 0 
 }
 
+
 while true; do
+  
   check_empty NAME "Enter node NAME: "
   check_empty SID "Scout Cash ID: "
   check_empty WAK "WEBHOOK_API_KEY: "
@@ -66,7 +69,7 @@ while true; do
   check_empty ORAPI "Openrouter API: "
   check_empty OPENAI "OpenAI API: "
   
- 
+  
   confirm_input
   if [ $? -eq 0 ]; then
     break 
@@ -74,6 +77,7 @@ while true; do
 done
 
 echo "All data is confirmed. Proceeding..."
+
 # Create script 
 tee $HOME/chasm/docker-compose.yml > /dev/null <<EOF
 version: "3.7"
