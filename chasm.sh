@@ -28,9 +28,14 @@ mkdir $HOME/chasm
 fi
 sleep 1
 function check_empty {
-  while [ -z "$1" ]; do
+  local varname=$3
+  while [ -z "${!varname}" ]; do
     read -p "$2" input
-    eval $3=$input
+    if [ -n "$input" ]; then
+      eval $varname=\"$input\"
+    else
+      echo "The value cannot be empty. Please try again."
+    fi
   done
 }
 
