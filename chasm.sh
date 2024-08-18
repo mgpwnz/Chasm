@@ -24,11 +24,13 @@ cd $HOME
 . <(wget -qO- https://raw.githubusercontent.com/mgpwnz/VS/main/docker.sh)
 #create dir and config
 if [ ! -d $HOME/chasm ]; then
-mkdir $HOME/chasm
+  mkdir $HOME/chasm
 fi
 sleep 1
+
+
 function check_empty {
-  local varname=$3
+  local varname=$1
   while [ -z "${!varname}" ]; do
     read -p "$2" input
     if [ -n "$input" ]; then
@@ -39,23 +41,39 @@ function check_empty {
   done
 }
 
-read -p "Enter node NAME: " NAME
-check_empty "$NAME" "Enter node NAME: " NAME
+function confirm_input {
+  echo "You have entered the following information:"
+  echo "Node Name: $NAME"
+  echo "Scout Cash ID: $SID"
+  echo "WEBHOOK_API_KEY: $WAK"
+  echo "Groq API: $GAPI"
+  echo "Openrouter API: $ORAPI"
+  echo "OpenAI API: $OPENAI"
+  
+  read -p "Is this information correct? (yes/no): " CONFIRM
+  if [ "$CONFIRM" != "yes" ]; then
+    echo "Let's try again..."
+    return 1 
+  fi
+  return 0 
+}
 
-read -p "Scout Cash ID: " SID
-check_empty "$SID" "Scout Cash ID: " SID
+while true; do
+  check_empty NAME "Enter node NAME: "
+  check_empty SID "Scout Cash ID: "
+  check_empty WAK "WEBHOOK_API_KEY: "
+  check_empty GAPI "Groq API: "
+  check_empty ORAPI "Openrouter API: "
+  check_empty OPENAI "OpenAI API: "
+  
+ 
+  confirm_input
+  if [ $? -eq 0 ]; then
+    break 
+  fi
+done
 
-read -p "WEBHOOK_API_KEY: " WAK
-check_empty "$WAK" "WEBHOOK_API_KEY: " WAK
-
-read -p "Groq API: " GAPI
-check_empty "$GAPI" "Groq API: " GAPI
-
-read -p "Openrouter API: " ORAPI
-check_empty "$ORAPI" "Openrouter API: " ORAPI
-
-read -p "OPENAI : " OPENAI
-check_empty "$OPENAI" "OPENAI : " OPENAI
+echo "All data is confirmed. Proceeding..."
 # Create script 
 tee $HOME/chasm/docker-compose.yml > /dev/null <<EOF
 version: "3.7"
