@@ -28,7 +28,6 @@ if [ ! -d $HOME/chasm ]; then
 fi
 sleep 1
 
-
 function check_empty {
   local varname=$1
   while [ -z "${!varname}" ]; do
@@ -40,7 +39,6 @@ function check_empty {
     fi
   done
 }
-
 
 function confirm_input {
   echo "You have entered the following information:"
@@ -60,6 +58,13 @@ function confirm_input {
 }
 
 while true; do
+  NAME=""
+  SID=""
+  WAK=""
+  GAPI=""
+  ORAPI=""
+  OPENAI=""
+  
   check_empty NAME "Enter node NAME: "
   check_empty SID "Scout Cash ID: "
   check_empty WAK "WEBHOOK_API_KEY: "
@@ -72,7 +77,6 @@ while true; do
     break 
   fi
 done
-
 
 echo "All data is confirmed. Proceeding..."
 
