@@ -59,9 +59,7 @@ function confirm_input {
   return 0 
 }
 
-
 while true; do
-  
   check_empty NAME "Enter node NAME: "
   check_empty SID "Scout Cash ID: "
   check_empty WAK "WEBHOOK_API_KEY: "
@@ -69,12 +67,12 @@ while true; do
   check_empty ORAPI "Openrouter API: "
   check_empty OPENAI "OpenAI API: "
   
-  
   confirm_input
   if [ $? -eq 0 ]; then
     break 
   fi
 done
+
 
 echo "All data is confirmed. Proceeding..."
 
