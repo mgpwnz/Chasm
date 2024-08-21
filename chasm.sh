@@ -92,11 +92,11 @@ services:
     env_file:
       - ./.env
     ports:
-    - '3004:3001'
+    - '3004:3004'
 EOF
 #env
 tee $HOME/chasm/.env > /dev/null <<EOF
-PORT=3001
+PORT=3004
 LOGGER_LEVEL=debug
 
 # Chasm
