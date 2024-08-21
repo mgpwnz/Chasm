@@ -43,7 +43,7 @@ function check_empty {
 function confirm_input {
   echo "You have entered the following information:"
   echo "Node Name: $NAME"
-  echo "Scout Cash ID: $SID"
+  echo "Scout UID: $SID"
   echo "WEBHOOK_API_KEY: $WAK"
   echo "Groq API: $GAPI"
   echo "Openrouter API: $ORAPI"
@@ -66,7 +66,7 @@ while true; do
   OPENAI=""
   
   check_empty NAME "Enter node NAME: "
-  check_empty SID "Scout Cash ID: "
+  check_empty SID "Scout UID: "
   check_empty WAK "WEBHOOK_API_KEY: "
   check_empty GAPI "Groq API: "
   check_empty ORAPI "Openrouter API: "
