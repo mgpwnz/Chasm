@@ -92,7 +92,7 @@ services:
     env_file:
       - ./.env
     ports:
-    - '3001:3001'
+    - '3004:3001'
 EOF
 #env
 tee $HOME/chasm/.env > /dev/null <<EOF
