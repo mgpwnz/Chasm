@@ -106,7 +106,7 @@ SCOUT_UID=$SID
 WEBHOOK_API_KEY=$WAK
 # Scout Webhook Url, update based on your server's IP and Port
 # e.g. http://123.123.123.123:3001/
-WEBHOOK_URL=http://`wget -qO- eth0.me`:3001/
+WEBHOOK_URL=http://`wget -qO- eth0.me`:3004/
 
 # Chosen Provider (groq, openai)
 PROVIDERS=groq
