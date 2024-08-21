@@ -41,24 +41,17 @@ function check_empty {
 }
 
 function confirm_input {
-  # Define colors
-  local RESET='\033[0m'
-  local BOLD='\033[1m'
-  local GREEN='\033[0;32m'
-  local RED='\033[0;31m'
-  local CYAN='\033[0;36m'
-
-  echo -e "${CYAN}You have entered the following information:${RESET}"
-  echo -e "${BOLD}Node Name:${RESET} ${GREEN}$NAME${RESET}"
-  echo -e "${BOLD}Scout Cash ID:${RESET} ${GREEN}$SID${RESET}"
-  echo -e "${BOLD}WEBHOOK_API_KEY:${RESET} ${GREEN}$WAK${RESET}"
-  echo -e "${BOLD}Groq API:${RESET} ${GREEN}$GAPI${RESET}"
-  echo -e "${BOLD}Openrouter API:${RESET} ${GREEN}$ORAPI${RESET}"
-  echo -e "${BOLD}OpenAI API:${RESET} ${GREEN}$OPENAI${RESET}"
-
-  read -p "${CYAN}Is this information correct? (yes/no): ${RESET}" CONFIRM
+  echo "You have entered the following information:"
+  echo "Node Name: $NAME"
+  echo "Scout Cash ID: $SID"
+  echo "WEBHOOK_API_KEY: $WAK"
+  echo "Groq API: $GAPI"
+  echo "Openrouter API: $ORAPI"
+  echo "OpenAI API: $OPENAI"
+  
+  read -p "Is this information correct? (yes/no): " CONFIRM
   if [ "$CONFIRM" != "yes" ]; then
-    echo -e "${RED}Let's try again...${RESET}"
+    echo "Let's try again..."
     return 1 
   fi
   return 0 
