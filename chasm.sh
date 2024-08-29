@@ -93,6 +93,13 @@ services:
       - ./.env
     ports:
     - '3004:3004'
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
+
 EOF
 #env
 tee $HOME/chasm/.env > /dev/null <<EOF
