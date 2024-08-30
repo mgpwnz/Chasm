@@ -50,7 +50,9 @@ function confirm_input {
   echo "OpenAI API: $OPENAI"
   
   read -p "Is this information correct? (yes/no): " CONFIRM
-  if [ "$CONFIRM" != "yes" ]; then
+  CONFIRM=$(echo "$CONFIRM" | tr '[:upper:]' '[:lower:]')
+  
+  if [ "$CONFIRM" != "yes" ] && [ "$CONFIRM" != "y" ]; then
     echo "Let's try again..."
     return 1 
   fi
