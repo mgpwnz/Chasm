@@ -9,6 +9,10 @@ while test $# -gt 0; do
             function="install"
             shift
             ;;
+        -up|--update)
+            function="update"
+            shift
+            ;;
         -un|--uninstall)
             function="uninstall"
             shift
@@ -129,6 +133,13 @@ OPENAI_API_KEY=$OPENAI
 EOF
 #Run nnode
 docker compose -f $HOME/chasm/docker-compose.yml up -d
+}
+update() {
+docker compose -f $HOME/chasm/docker-compose.yml down
+docker compose -f $HOME/chasm/docker-compose.yml pull
+docker compose -f $HOME/chasm/docker-compose.yml up -d
+docker logs -f chasm-node-1
+
 }
 uninstall() {
 if [ ! -d "$HOME/chasm" ]; then
