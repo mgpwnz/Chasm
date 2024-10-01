@@ -144,7 +144,7 @@ docker logs -f chasm-node-1
 uninstall() {
 if [ ! -d "$HOME/chasm" ]; then
     echo "Directory not found"
-    exit 1
+    break
 fi
 
 read -r -p "Wipe all DATA? [y/N] " response
@@ -156,7 +156,7 @@ case "$response" in
         ;;
     *)
         echo "Canceled"
-        exit 0
+        break
         ;;
 esac
 }
