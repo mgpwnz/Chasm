@@ -143,17 +143,20 @@ docker logs -f chasm-node-1
 }
 uninstall() {
 if [ ! -d "$HOME/chasm" ]; then
-    break
+    echo "Directory not found"
+    exit 1
 fi
+
 read -r -p "Wipe all DATA? [y/N] " response
 case "$response" in
     [yY][eE][sS]|[yY]) 
-docker compose -f $HOME/chasm/docker-compose.yml down -v
-rm -rf $HOME/chasm
+        docker-compose -f "$HOME/chasm/docker-compose.yml" down -v
+        rm -rf "$HOME/chasm"
+        echo "Data wiped"
         ;;
     *)
-	echo Canceled
-	break
+        echo "Canceled"
+        exit 0
         ;;
 esac
 }
